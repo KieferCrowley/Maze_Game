@@ -1,0 +1,241 @@
+## Project 1 Team Deliverables
+Code and Code Accessories
+User Stories
+Tests
+Code Quality
+Comments
+Commit Messages
+Git
+Pair Programming
+Documentation
+Lightweight Planning Artifacts
+Backlog
+Planning
+Retrospective
+Code and Code Accessories
+User Stories
+Objectives
+The project should include a small but meaningful set of user stories.
+
+User stories should:
+
+Describe user-visible behavior of the app in a simple format, such as: "as a <role> I want to <action> so that I can <goal>"
+Include acceptance criteria
+Be small enough to complete during the project
+Cover both essential and optional features
+Be stored in docs/user_stories.md
+Expected Quantity
+5-10 user stories total
+At least 3 essential stories
+At least 1 sad-path/error-handling story
+Assessment
+User stories will be assessed based on whether:
+
+There are enough stories for the size of the project
+The stories describe real user-facing behavior
+The stories are clear, testable, and relevant
+The implemented app reflects the stories
+Tests
+Objectives
+The project should include automated tests.  
+
+The test suite should include:
+
+Unit tests: low-level tests that verify specific functions or classes work correctly in isolation
+Acceptance tests: high-level tests that verify the complete application satisfies end-user requirements
+Tests for core/essential app behavior
+Happy-path tests, where the user provides valid input
+Sad-path tests, where the user provides invalid input or an error condition occurs
+Tests that are fast, independent, repeatable, self-validating, and easy to run
+A documented command for running the test suite
+Expected Coverage
+The test suite should cover the most important parts of the application.
+A good target for statement coverage is at least 80%.
+Regardless of coverage, there must be clear evidence that the core logic of the app is well-tested.
+Use a coverage tool and include the coverage report or instructions to generate it in the documentation
+Assessment
+Tests will be assessed based on whether:
+
+They run successfully.
+They test meaningful behavior.
+They include both happy and sad paths.
+They are not overly-dependent on test order or shared state.
+They cover the core application logic.
+Code Quality
+Objectives
+The code should be clean, readable, and maintainable.
+
+Code should:
+
+Be organized into appropriate directories, files, classes, and modules
+Avoid unnecessary duplication
+Use meaningful names for variables, methods, classes, and files
+Separate core logic from input/output where reasonable
+Handle invalid user input gracefully
+Avoid hard-coded values when constants or configuration would be more clear
+Run without crashing during normal use
+Have minimal (ideally zero) style offenses, e.g. as measured by RuboCop
+Assessment
+Code quality will be assessed based on:
+
+Readability
+Organization
+Correctness
+Error handling
+Maintainability
+Whether the app can be run successfully by the grader
+Comments
+Objectives
+Comments should be used when they add useful context.
+
+Good comments explain things which are not obvious from the code, e.g.
+
+Why a decision was made
+Important assumptions or limitations
+Comments should not merely repeat what the code already says.
+
+Assessment
+Comments will be assessed based on whether:
+
+Comments are up-to-date and useful
+Comments explain non-obvious things
+Commit Messages
+Objectives
+Commit messages should be clear, concise, and meaningful.
+
+Good commit messages include:
+
+A short subject line describing the change
+Use the imperative mood when possible
+A body for larger or non-obvious changes.
+The reason for the change when appropriate.
+Assessment
+Commit messages will be assessed based on whether, in a sample of commits and code changes:
+
+Commit messages clearly and accurately describe the changes
+Commit messages are concise, but not overly so
+Git
+Objectives
+Teams should use Git for collaborative development and version control.
+
+Expected Git practices:
+
+The project is stored in a GitHub repository
+Every team member contributes to the repository
+Commits are made regularly
+The commit history shows incremental development
+Large or last-minute commits should be avoided
+Feature branches are encouraged
+Pull requests are recommended for non-trivial changes
+Assessment
+Git usage will be assessed based on:
+
+Contributions from all team members
+Commit history demonstrates use of expected Git practices 
+Pair Programming
+Objectives
+There should be evidence that the team practiced pair programming.
+
+Expected pair programming practices:
+
+Use driver/navigator roles
+Switch roles regularly
+Discuss design and implementation decisions together
+Make sure both partners understand the code
+Record evidence of pair-programming work in docs/pairing_log.md
+# Pairing Log
+
+## Session 1 — 2026-02-03
+
+Driver: Alice  
+Navigator: Bob  
+
+Work completed:
+- Created project structure
+- Added first user stories
+- Implemented main menu skeleton
+
+Notes:
+- Decided to separate input/output from game logic
+Assessment
+Pair programming will be assessed based on:
+
+The pairing log
+Evidence of shared ownership of the code
+Ability of both partners to explain the design and implementation
+Documentation
+Objectives
+The repository should include a README.md.
+
+The README should contain:
+
+Project name
+Short description of the app
+Installation/setup instructions
+Instructions for running the app
+Instructions for running the tests and generating the coverage report
+List of main features
+Any known limitations
+Names of all team members
+The repository should include a simple design document at docs/design.md that includes (at least):
+
+System architecture: major classes/modules, their responsibilities and interactions
+User interface design: mock-ups, expected interactions/workflows
+Explanations for important design decisions or tradeoffs
+Assessment
+Documentation will be assessed based on whether:
+
+It is present, accurate, and up-to-date
+The grader can test and run the app using only the instructions provided in the README
+Lightweight Planning Artifacts
+Backlog
+Objectives
+The project should maintain a small backlog of work items at docs/backlog.md
+
+The backlog should include:
+
+User stories or feature ideas
+Task breakdowns for implementation
+Status of work items, such as:
+To Do
+In Progress
+Done
+Assessment
+The backlog will be assessed based on whether:
+
+It exists
+It was updated in timely manner during the project
+It reflects the implemented work
+It shows reasonable planning
+Planning
+Objectives
+The team should hold a planning discussion near the start of the project and document the discussion in docs/planning.md .
+
+The planning discussion should address:
+
+What app the team will build
+Which features are essential and which are optional
+How the team will collaborate on work (individual vs. pair programming)
+What “done” means for the project and for individual features/stories
+Assessment
+The planning discussion will be assessed based on whether the documentation:
+
+Is present
+Shows meaningful planning
+Is specific to the project and consistent with the actual development history
+Retrospective
+Objectives
+The team should hold a retrospective discussion near the end of the project and document the discussion in docs/retrospective.md.
+
+The retrospective discussion should address:
+
+What went well
+What was difficult
+What the pair would improve next time
+Whether the final app met the original goal
+Assessment
+The retrospective discussion will be assessed based on whether the documentation:
+
+Is present
+Shows meaningful reflection
+Is specific to the project and consistent with the actual development history
