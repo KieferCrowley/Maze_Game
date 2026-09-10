@@ -7,3 +7,9 @@
 - Counts down from specified time to 0. When time runs out, signals for game to end. 
 ## Player
 - Keeps track of items picked up by player. (Only necessary if items are implemented).
+
+# UI Design
+- A maze will be displayed across the majority of the screen. On the side, possible user-input and controls will be displayed. 
+
+# Design Decisions/Tradeoffs 
+- Maze class will have function to check if a space is valid. Movement will call that function before updating player position. 
