@@ -19,7 +19,7 @@ Driver: Kiefer Crowley
 Navigator: Samuel Fu
 
 Work completed:
-- 
+- Created design doc
 
 Notes:
 - 
