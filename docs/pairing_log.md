@@ -6,7 +6,7 @@ Driver: Samuel Fu
 Navigator: Kiefer Crowley
 
 Work completed:
-- 
+- Finished planning doc
 
 Notes:
 - 
