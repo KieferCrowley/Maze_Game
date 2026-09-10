@@ -7,6 +7,7 @@ Navigator: Kiefer Crowley
 
 Work completed:
 - Finished planning doc
+- Finished user stories
 
 Notes:
 - 
