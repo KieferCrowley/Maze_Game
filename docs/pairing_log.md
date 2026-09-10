@@ -20,6 +20,8 @@ Navigator: Samuel Fu
 
 Work completed:
 - Created design doc
+- Created Readme
+- Created Backlog
 
 Notes:
 - 
