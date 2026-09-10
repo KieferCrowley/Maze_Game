@@ -12,9 +12,8 @@ Work completed:
 Notes:
 - 
 
-# Pairing Log
 
-## Session 1 — 2026-09-10
+## Session 2 — 2026-09-10
 
 Driver: Kiefer Crowley
 Navigator: Samuel Fu
