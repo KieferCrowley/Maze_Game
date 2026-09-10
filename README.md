@@ -1,4 +1,4 @@
-# Maze_Game
+#                                                                       Maze_Game
 
 # Description
 - Maze traversal game. The player must navigate the maze and reach the end within the time limit. Players can select difficulty, altering the size and complexity of the maze. 
