@@ -1,9 +1,9 @@
 # Pairing Log
 
-## Session 1 — 2026-02-03
+## Session 1 — 2026-09-10
 
-Driver: 
-Navigator: 
+Driver: Samuel Fu
+Navigator: Kiefer Crowley
 
 Work completed:
 - 
