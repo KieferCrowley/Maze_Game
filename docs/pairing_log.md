@@ -25,3 +25,16 @@ Work completed:
 
 Notes:
 - 
+
+## Session 3 — 2026-09-11
+
+Driver: Samuel Fu
+Navigator: Kiefer Crowley
+
+Work completed:
+- Created Maze Class
+- Created demo maze
+- Created test display
+
+Notes:
+- 
