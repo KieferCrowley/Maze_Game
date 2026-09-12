@@ -1,27 +1,27 @@
 class Maze
     TEST_GRID = [
-    ["##", "##", "##", "##", "##", "##", "##"],
-    ["##", " S", "##", "  ", "  ", "  ", "##"],
-    ["##", "  ", "##", "  ", "##", "  ", "##"],
-    ["##", "  ", "##", "  ", "##", "  ", "##"],
-    ["##", "  ", "##", "  ", "##", "  ", "##"],
-    ["##", "  ", "  ", "  ", "##", " X", "##"],
-    ["##", "##", "##", "##", "##", "##", "##"],
+    ["###", "###", "###", "###", "###", "###", "###"],
+    ["###", " O ", "###", "   ", "   ", "   ", "###"],
+    ["###", "   ", "###", "   ", "###", "   ", "###"],
+    ["###", "   ", "###", "   ", "###", "   ", "###"],
+    ["###", "   ", "###", "   ", "###", "   ", "###"],
+    ["###", "   ", "   ", "   ", "###", " X ", "###"],
+    ["###", "###", "###", "###", "###", "###", "###"],
     ].freeze
 
     attr_reader :grid, :difficulty
 
-    def initialize(difficulty:)
-        @difficulty = difficulty.downcase
+    def initialize(difficulty)
+        @difficulty = difficulty.downcase.strip
         
         case difficulty
-        when :easy
+        when "easy"
             @grid = TEST_GRID.map(&:dup) 
             #.map(&:dup) creates line by line duplicate of the grid
             # this may come in handy when we make changes to it for movement or fog of war
-        when :medium
+        when "medium"
             @grid = TEST_GRID.map(&:dup) 
-        when :hard
+        when "hard"
             @grid = TEST_GRID.map(&:dup) 
         else
             raise ArgumentError, "invalid difficulty: #{difficulty}, please type in easy, medium or hard"
