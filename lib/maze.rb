@@ -42,5 +42,5 @@ class Maze
 end 
 
 #test code
-test_maze = Maze.new(difficulty: :easy)
-test_maze.test_display
+#test_maze = Maze.new(difficulty: :easy)
+#test_maze.test_display
