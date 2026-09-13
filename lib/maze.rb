@@ -53,6 +53,36 @@ class Maze
     def load_maze(filename)
         CSV.read(filename)
     end
+
+    def move(action)
+        case action
+        when "w"
+            if (valid_move?(@player_x, @player_y - 1))
+                @player_y -= 1
+            else
+                puts "Invalid move!"
+            end
+        when "a"
+            if (valid_move?(@player_x - 1, @player_y))
+                @player_x -= 1
+            else
+                puts "Invalid move!"
+            end
+        when "s"
+            if (valid_move?(@player_x, @player_y + 1))
+                @player_y += 1
+            else
+                puts "Invalid move!"
+            end
+        when "d"
+            if (valid_move?(@player_x + 1, @player_y))
+                @player_x += 1
+            else
+                puts "Invalid move!"
+            end
+        end
+    end
+
     # for quick look at whats in the current location
     def tile_at(x, y)
         @grid[y][x]

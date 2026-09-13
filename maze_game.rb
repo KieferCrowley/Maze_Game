@@ -21,12 +21,11 @@ maze.test_display
 game_over = false
 while (!game_over) do
     action = STDIN.getch.downcase   # get single character input
-    if (action == "w" || action == "a" || action == "s" || action == "d") do
-        valid_move = false
-        #check if valid move
-        if (valid_move) do
-            #move player
+    if (action == "w" || action == "a" || action == "s" || action == "d")
+        maze.move(action) # move() checks if move is valid
+        if (maze.player_at_exit?)
+            game_over = true
         end
     end
-    game_over = true #temp exit
+    game_over = true # temp exit. delete once player position updates are displayed
 end
