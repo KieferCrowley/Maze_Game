@@ -81,6 +81,7 @@ class Maze
                 puts "Invalid move!"
             end
         end
+        # for items, add function call here to check new grid
     end
 
     # for quick look at whats in the current location
@@ -100,6 +101,31 @@ class Maze
     
     # for future randomized maze:
     # def generate_maze(sizex, sizey, startx, starty, endx, endy)
+
+    def clear_display
+        if Gem.win_platform?
+            system("cls")
+        else
+            system("clear")
+        end
+    end
+
+    def display 
+        #clear terminal and reset cursor
+        #print "\e[2J\e[H"
+        clear_display
+        @grid.each_with_index do |row, y|
+            row.each_with_index do |tile, x|
+                if x == @player_x && y == @player_y
+                    print PLAYER
+                else 
+                    print tile
+                end
+            end
+            #start new line
+            puts 
+        end
+    end
 
     def test_display
         @grid.each do |row|
