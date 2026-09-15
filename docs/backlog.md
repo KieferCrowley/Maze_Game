@@ -11,3 +11,19 @@
 ## Done
 - User Stories
 - Planning
+
+# 2026-09-14
+## To Do
+- Integrate timer into display to fix glitching
+- Let display handle movement invalid messages
+- Optional features 
+- Automated testing and coverage reports
+## In Progress
+- Readme
+- Backlog
+- Pair Log
+## Done
+- Maze
+- Movement
+- Timer
+
