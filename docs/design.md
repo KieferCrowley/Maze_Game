@@ -14,6 +14,6 @@
 # Design Decisions/Tradeoffs 
 - Maze class will have function to check if a space is valid. Movement will call that function before updating player position. 
 - Switched to using wasd instead of "left/right/up/down" with getch to avoid pressing enter repeatedly
-- Used thread for timer so it can run in parrallel with the game
+- Used thread for timer so it can run in parallel with the game
 - CSV files for storing maze grids for readability
 - Separated the player position from the grid, and its just recorded through coordinates.
