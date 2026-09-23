@@ -10,8 +10,8 @@ class Timer
         Thread.new do
             while (@time >= 0) do
                 print "\rTime Remaining: #{@time}"
-                @time -= 1
                 sleep(1)
+                @time -= 1
             end
         end
     end
