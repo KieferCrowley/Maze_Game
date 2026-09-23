@@ -22,7 +22,9 @@ input_queue = Queue.new
 #input runs on its own thread
 input_thread = Thread.new do
     loop do
-        input_queue << STDIN.getch.downcase
+        key = STDIN.getch.downcase
+        input_queue.clear
+        input_queue << key
     end
 end
 
@@ -42,7 +44,6 @@ while (!game_over && timer.time > 0) do
             maze.display # update view of maze
             if (maze.player_at_exit?)
                 game_over = true
-                puts "You Escaped!"
             end
         end
     rescue ThreadError
