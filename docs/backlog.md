@@ -27,3 +27,18 @@
 - Movement
 - Timer
 
+# 2026-09-23
+## Samuel To Do
+- Fix timer & end game issue
+- Fix timer and display glitch
+## Kiefer To Do
+- Add automated testing script
+## In Progress
+- Backlog
+- Readme
+- Pair log
+- Stretch features
+- Retrospective
+## Done
+- Base Game
+
