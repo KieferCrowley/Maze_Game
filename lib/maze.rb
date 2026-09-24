@@ -59,26 +59,26 @@ class Maze
         when "w"
             if (valid_move?(@player_x, @player_y - 1))
                 @player_y -= 1
-            else
-                puts "Invalid move!"
+            #else
+                #puts "Invalid move!"
             end
         when "a"
             if (valid_move?(@player_x - 1, @player_y))
                 @player_x -= 1
-            else
-                puts "Invalid move!"
+            #else
+                #puts "Invalid move!"
             end
         when "s"
             if (valid_move?(@player_x, @player_y + 1))
                 @player_y += 1
-            else
-                puts "Invalid move!"
+            #else
+                #puts "Invalid move!"
             end
         when "d"
             if (valid_move?(@player_x + 1, @player_y))
                 @player_x += 1
-            else
-                puts "Invalid move!"
+            #else
+                #puts "Invalid move!"
             end
         end
         # for items, add function call here to check new grid
@@ -110,21 +110,42 @@ class Maze
         end
     end
 
-    def display 
+    #def display(seconds) 
         #clear terminal and reset cursor
         #print "\e[2J\e[H"
-        clear_display
+    #    clear_display
+    #    @grid.each_with_index do |row, y|
+    #        row.each_with_index do |tile, x|
+    #            if x == @player_x && y == @player_y
+    #                print PLAYER
+    #            else 
+    #                print tile
+    #            end
+    #        end
+    #        #start new line
+    #        puts 
+    #    end
+    #    puts "Time remaining: #{seconds}"
+    #    #print "\rTime Remaining: #{@time}"
+    #end
+
+    def display(seconds)
+        # Implementation for displaying maze with time
+        # with another method
+        frame = ""
         @grid.each_with_index do |row, y|
             row.each_with_index do |tile, x|
                 if x == @player_x && y == @player_y
-                    print PLAYER
-                else 
-                    print tile
+                    frame += PLAYER
+                else
+                    frame += tile
                 end
             end
-            #start new line
-            puts 
+            frame += "\n"
         end
+        frame += "Time remaining: #{seconds}\n"
+        print "\e[H"
+        print frame
     end
 
     def test_display
