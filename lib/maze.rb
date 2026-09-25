@@ -36,14 +36,19 @@ class Maze
             #hard grid size = 29*29
             #@grid = TEST_GRID.map(&:dup) 
             filename = "hard.csv"
+        when "test"
+            @grid = TEST_GRID.map(&:dup)
         else
             raise ArgumentError, "invalid difficulty: #{difficulty}, please type in easy, medium or hard"
         end
+
+        if (@difficulty != "test")
+            path = File.expand_path("../mazes/#{filename}", __dir__)
+            @grid = CSV.read(path) 
+        end
+        
         #initiliazing important coordinates
         #start and exit located on top left and bottom right corner within the walls
-        path = File.expand_path("../mazes/#{filename}", __dir__)
-        @grid = CSV.read(path) 
-
         @player_x = 1
         @player_y = 1
         @exit_x = @grid[0].length - 2
