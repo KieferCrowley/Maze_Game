@@ -1,7 +1,7 @@
 # Maze_Game
 
 # Description
-- Maze traversal game. The player must navigate the maze and reach the end within the time limit. Players can select difficulty, altering the size and complexity of the maze. 
+- Maze traversal game. The player must navigate the maze and reach the end within the time limit. Players can select difficulty, altering the size and complexity of the maze, and whether fog-of-war is enable, making untraversed area's of the maze "invisible". 
 
 # Installation/Setup
 
