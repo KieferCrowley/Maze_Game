@@ -78,6 +78,25 @@ else
 end
 tests_run += 1
 
+# Test fog of war
+if (test_maze.fow_flag == false)
+    tests_passed += 1
+else
+    tests_failed += 1
+    err_message.append("Fog of war flag initialized incorrectly")
+end
+tests_run += 1
+
+test_maze.fow_flag = "y"
+if (test_maze.fow_flag)
+    tests_passed += 1
+else
+    tests_failed += 1
+    err_message.append("Fog of war flag setter incorrect")
+end
+tests_run += 1
+
+
 # Test valid_move, move, & player_at_exit
 pos_x = 1
 pos_y = 1

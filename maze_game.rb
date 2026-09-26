@@ -13,6 +13,15 @@ while (!input_valid) do
     end
 end
 
+input_valid = false
+while (!input_valid) do
+    puts "Enable Fog of War? Type: \"y\" or \"n\""
+    fow_choice = gets.downcase.strip
+    if (fow_choice == "y" || fow_choice == "n")
+        input_valid = true
+    end
+end
+
 input_queue = Queue.new
 
 #input runs on its own thread
@@ -28,6 +37,7 @@ maze = Maze.new(difficulty)
 
 timer = Timer.new(60)
 timer.count_down
+maze.fow_flag = fow_choice
 maze.clear_display
 maze.display(timer.time)
 last_time = timer.time
