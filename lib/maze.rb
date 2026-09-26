@@ -184,9 +184,9 @@ class Maze
                     frame += tile
                 end
             end
-            frame += "\n"
+            frame += "\r\n"
         end
-        frame += "Time remaining: #{seconds}\n"
+        frame += "Time remaining: #{seconds}\n\r"
         print "\e[H"
         print frame
     end

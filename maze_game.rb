@@ -70,12 +70,16 @@ while (!game_over && timer.time > 0) do
     end
     sleep(0.05)
 end
-
-if game_over
-    puts "You Escaped!"
-elsif timer.time <= 0
-    puts "\nTime's up! Game Over!"
-end
-puts "Press any key to exit..."
-
 input_thread.kill
+if game_over
+    puts "You Escaped!\r"
+elsif timer.time <= 0
+    puts "\nTime's up! Game Over!\r"
+end
+
+if RUBY_PLATFORM =~ /mingw|mswin/
+    puts "Press any key to exit..."
+end
+#puts "Press any key to exit..."
+
+#input_thread.kill
