@@ -5,6 +5,7 @@ class Maze
     EXIT = " X "
     EMPTY = "   "
     PLAYER = " O "
+    FOW = "???"
     TEST_GRID = [
     ["###", "###", "###", "###", "###", "###", "###"],
     ["###", " O ", "###", "   ", "   ", "   ", "###"],
@@ -16,7 +17,7 @@ class Maze
     ].freeze
 
 
-    attr_reader :grid, :difficulty, :player_x, :player_y, :exit_x, :exit_y
+    attr_reader :grid, :difficulty, :player_x, :player_y, :exit_x, :exit_y, :fow_flag, :fow_grid
 
     def initialize(difficulty)
         @difficulty = difficulty.downcase.strip
@@ -47,12 +48,27 @@ class Maze
             @grid = CSV.read(path) 
         end
         
+        @fow_flag = false
+        @fow_grid = Array.new(@grid.length) do |y|
+            Array.new(@grid[y].length, false)
+        end
         #initiliazing important coordinates
         #start and exit located on top left and bottom right corner within the walls
         @player_x = 1
         @player_y = 1
         @exit_x = @grid[0].length - 2
         @exit_y = @grid.length- 2
+    end
+
+    # Setter for fog of war flag and initial reveal
+    def fow_flag=(flag)
+        case flag
+        when "y"
+            @fow_flag = true
+            reveal_fow
+        when "n"
+            @fow_flag = false
+        end
     end
 
     def load_maze(filename)
@@ -86,6 +102,8 @@ class Maze
                 #puts "Invalid move!"
             end
         end
+        # reveal fow when player moves
+        reveal_fow if @fow_flag
         # for items, add function call here to check new grid
     end
 
@@ -104,6 +122,24 @@ class Maze
         (@player_x == @exit_x) && (@player_y == @exit_y)
     end
     
+    # for checking if a coordinate is within the bounds of the maze
+    def within_bounds?(x, y)
+        x >= 0 && x < @grid[0].length && y >= 0 && y < @grid.length
+    end
+
+    # for removing fog of war
+    def reveal_fow
+        (-1..1).each do |dx|
+            (-1..1).each do |dy|
+                x = @player_x + dx
+                y = @player_y + dy
+                if within_bounds?(x, y)
+                    @fow_grid[y][x] = true
+                end
+            end
+        end
+    end
+
     # for future randomized maze:
     # def generate_maze(sizex, sizey, startx, starty, endx, endy)
 
@@ -142,6 +178,8 @@ class Maze
             row.each_with_index do |tile, x|
                 if x == @player_x && y == @player_y
                     frame += PLAYER
+                elsif @fow_flag && !@fow_grid[y][x]
+                    frame += FOW
                 else
                     frame += tile
                 end
