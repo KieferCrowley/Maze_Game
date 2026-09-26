@@ -42,3 +42,16 @@
 ## Done
 - Base Game
 
+# 2026-09-26
+## To Do
+- Randomly generated mazes
+- Flavor text/hints
+- Usable items
+## In Progress
+- N/A
+## Done
+- Documentation
+- Base Game
+- Fog-of-war
+- Test cases
+
