@@ -37,7 +37,7 @@ maze = Maze.new(difficulty)
 
 timer = Timer.new(60)
 timer.count_down
-maze.fow_flag = (fow_choice)
+maze.fow_flag = fow_choice
 maze.clear_display
 maze.display(timer.time)
 last_time = timer.time
