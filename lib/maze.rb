@@ -186,7 +186,7 @@ class Maze
             end
             frame += "\r\n"
         end
-        frame += "Time remaining: #{seconds}\n\r"
+        frame += "Time remaining: #{seconds} \n\r"
         print "\e[H"
         print frame
     end
