@@ -1,5 +1,7 @@
-require 'csv'
+# frozen_string_literal: true
 
+require 'csv'
+# Represents the maze gird, player position, movement and display logic.
 class Maze
   WALL = '###'
   EXIT = ' X '
@@ -108,13 +110,13 @@ class Maze
   end
 
   # for quick look at whats in the current location
-  def tile_at(x, y)
-    @grid[y][x]
+  def tile_at(x_coord, y_coord)
+    @grid[y_coord][x_coord]
   end
 
   # for checking is the next tile valid, only check if the spot is a wall or not, in case of items in the future
-  def valid_move?(x, y)
-    @grid[y][x] != WALL
+  def valid_move?(x_coord, y_coord)
+    @grid[y_coord][x_coord] != WALL
   end
 
   # for checking if player is at the exit
@@ -123,8 +125,8 @@ class Maze
   end
 
   # for checking if a coordinate is within the bounds of the maze
-  def within_bounds?(x, y)
-    x >= 0 && x < @grid[0].length && y >= 0 && y < @grid.length
+  def within_bounds?(x_coord, y_coord)
+    x_coord >= 0 && x_coord < @grid[0].length && y_coord >= 0 && y_coord < @grid.length
   end
 
   # for removing fog of war

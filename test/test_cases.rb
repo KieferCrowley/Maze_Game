@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/maze'
 require_relative '../lib/timer'
 
@@ -53,7 +55,7 @@ else
   $stdout = StringIO.new # silence output
   timer.count_down
   sleep(1)
-  if timer.time > 0
+  if timer.time.positive?
     tests_failed += 1
     err_message.append('Timer counted down incorrectly')
   else
@@ -101,9 +103,9 @@ pos_y = 1
 $stdout = StringIO.new # silence output
 
 inputs = %w[s a d]
-for i in (0...11) do
+(0...11).each do |i|
   test_maze.move(inputs[i % 3])
-  pos_y += 1 if i % 3 == 0 # only "s" is valid
+  pos_y += 1 if (i % 3).zero? # only "s" is valid
   if test_maze.player_x == pos_x && test_maze.player_y == pos_y
     tests_passed += 1
   else
@@ -122,9 +124,9 @@ end
 tests_run += 1
 
 inputs = %w[d s w]
-for i in (0...4) do
+(0...4).each do |i|
   test_maze.move(inputs[i % 3])
-  pos_x += 1 if i % 3 == 0 # only "d" is valid
+  pos_x += 1 if (i % 3).zero? # only "d" is valid
   if test_maze.player_x == pos_x && test_maze.player_y == pos_y
     tests_passed += 1
   else
@@ -143,9 +145,9 @@ end
 tests_run += 1
 
 inputs = %w[w a d]
-for i in (0...10) do
+(0...10).each do |i|
   test_maze.move(inputs[i % 3])
-  pos_y -= 1 if i % 3 == 0 # only "w" is valid
+  pos_y -= 1 if (i % 3).zero? # only "w" is valid
   if test_maze.player_x == pos_x && test_maze.player_y == pos_y
     tests_passed += 1
   else
@@ -164,9 +166,9 @@ end
 tests_run += 1
 
 inputs = %w[d w s]
-for i in (0...4) do
+(0...4).each do |i|
   test_maze.move(inputs[i % 3])
-  pos_x += 1 if i % 3 == 0 # only "d" is valid
+  pos_x += 1 if (i % 3).zero? # only "d" is valid
   if test_maze.player_x == pos_x && test_maze.player_y == pos_y
     tests_passed += 1
   else
@@ -185,9 +187,9 @@ end
 tests_run += 1
 
 inputs = %w[s a d]
-for i in (0...11) do
+(0...11).each do |i|
   test_maze.move(inputs[i % 3])
-  pos_y += 1 if i % 3 == 0 # only "s" is valid
+  pos_y += 1 if (i % 3).zero? # only "s" is valid
   if test_maze.player_x == pos_x && test_maze.player_y == pos_y
     tests_passed += 1
   else

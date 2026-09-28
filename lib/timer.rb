@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Provides the countdown timer used by the game
 class Timer
   attr_reader :time
 

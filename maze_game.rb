@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'io/console'
 
 require_relative 'lib/maze'
@@ -23,7 +25,7 @@ input_queue = Queue.new
 # input runs on its own thread
 input_thread = Thread.new do
   loop do
-    key = STDIN.getch.downcase
+    key = $stdin.getch.downcase
     input_queue.clear
     input_queue << key
   end
@@ -39,7 +41,7 @@ maze.display(timer.time)
 last_time = timer.time
 # Start game. Game ends when player reaches the end or time runs out.
 game_over = false
-while !game_over && timer.time > 0
+while !game_over && timer.time.positive?
   # action = STDIN.getch.downcase   # get single character input. BUG: blocking action
   needs_redraw = false
   begin
@@ -54,6 +56,7 @@ while !game_over && timer.time > 0
     # for exiting the game
     break if action == 'q'
   rescue ThreadError
+    action = nil
   end
   if timer.time != last_time
     needs_redraw = true
