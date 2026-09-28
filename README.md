@@ -24,6 +24,7 @@
 - Display: Displays the maze and the timer. When the game ends, the appropriate message will be displayed. 
 
 # Limitations
+- On hard difficulty, top two rows of maze are printed repeatedly. We could not consistently replicate this bug. 
 
 # Team Members
 - Samuel Fu
