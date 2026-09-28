@@ -24,7 +24,7 @@
 - Display: Displays the maze and the timer. When the game ends, the appropriate message will be displayed. 
 
 # Limitations
-- On hard difficulty, top two rows of maze are printed repeatedly. We could not consistently replicate this bug. 
+- On hard difficulty, top two rows of maze are printed repeatedly. This happens when the terminal window is not tall enough to display the maze all at once. Press "q" to quit the game, enlarge the terminal window and run again. 
 
 # Team Members
 - Samuel Fu
