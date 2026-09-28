@@ -1,209 +1,211 @@
-require "csv"
+# frozen_string_literal: true
 
+require 'csv'
+# Represents the maze gird, player position, movement and display logic.
 class Maze
-    WALL = "###"
-    EXIT = " X "
-    EMPTY = "   "
-    PLAYER = " O "
-    FOW = "???"
-    TEST_GRID = [
-    ["###", "###", "###", "###", "###", "###", "###"],
-    ["###", " O ", "###", "   ", "   ", "   ", "###"],
-    ["###", "   ", "###", "   ", "###", "   ", "###"],
-    ["###", "   ", "###", "   ", "###", "   ", "###"],
-    ["###", "   ", "###", "   ", "###", "   ", "###"],
-    ["###", "   ", "   ", "   ", "###", " X ", "###"],
-    ["###", "###", "###", "###", "###", "###", "###"],
-    ].freeze
+  WALL = '###'
+  EXIT = ' X '
+  EMPTY = '   '
+  PLAYER = ' O '
+  FOW = '???'
+  TEST_GRID = [
+    ['###', '###', '###', '###', '###', '###', '###'],
+    ['###', ' O ', '###', '   ', '   ', '   ', '###'],
+    ['###', '   ', '###', '   ', '###', '   ', '###'],
+    ['###', '   ', '###', '   ', '###', '   ', '###'],
+    ['###', '   ', '###', '   ', '###', '   ', '###'],
+    ['###', '   ', '   ', '   ', '###', ' X ', '###'],
+    ['###', '###', '###', '###', '###', '###', '###']
+  ].freeze
 
 
-    attr_reader :grid, :difficulty, :player_x, :player_y, :exit_x, :exit_y, :fow_flag, :fow_grid
+  attr_reader :grid, :difficulty, :player_x, :player_y, :exit_x, :exit_y, :fow_flag, :fow_grid
 
-    def initialize(difficulty)
-        @difficulty = difficulty.downcase.strip
-        
-        case @difficulty
-        when "easy"
-            #easy grid size = 17*17
-            #@grid = TEST_GRID.map(&:dup) 
-            filename = "easy.csv"
-            #.map(&:dup) creates line by line duplicate of the grid
-            # this may come in handy when we make changes to it for movement or fog of war
-        when "medium"
-            #medium grid size = 23*23
-            #@grid = TEST_GRID.map(&:dup)
-            filename = "medium.csv"
-        when "hard"
-            #hard grid size = 29*29
-            #@grid = TEST_GRID.map(&:dup) 
-            filename = "hard.csv"
-        when "test"
-            @grid = TEST_GRID.map(&:dup)
-        else
-            raise ArgumentError, "invalid difficulty: #{difficulty}, please type in easy, medium or hard"
-        end
+  def initialize(difficulty)
+    @difficulty = difficulty.downcase.strip
 
-        if (@difficulty != "test")
-            path = File.expand_path("../mazes/#{filename}", __dir__)
-            @grid = CSV.read(path) 
-        end
-        
-        @fow_flag = false
-        @fow_grid = Array.new(@grid.length) do |y|
-            Array.new(@grid[y].length, false)
-        end
-        #initiliazing important coordinates
-        #start and exit located on top left and bottom right corner within the walls
-        @player_x = 1
-        @player_y = 1
-        @exit_x = @grid[0].length - 2
-        @exit_y = @grid.length- 2
+    case @difficulty
+    when 'easy'
+      # easy grid size = 17*17
+      # @grid = TEST_GRID.map(&:dup)
+      filename = 'easy.csv'
+    # .map(&:dup) creates line by line duplicate of the grid
+    # this may come in handy when we make changes to it for movement or fog of war
+    when 'medium'
+      # medium grid size = 23*23
+      # @grid = TEST_GRID.map(&:dup)
+      filename = 'medium.csv'
+    when 'hard'
+      # hard grid size = 29*29
+      # @grid = TEST_GRID.map(&:dup)
+      filename = 'hard.csv'
+    when 'test'
+      @grid = TEST_GRID.map(&:dup)
+    else
+      raise ArgumentError, "invalid difficulty: #{difficulty}, please type in easy, medium or hard"
     end
 
-    # Setter for fog of war flag and initial reveal
-    def fow_flag=(flag)
-        case flag
-        when "y"
-            @fow_flag = true
-            reveal_fow
-        when "n"
-            @fow_flag = false
-        end
+    if @difficulty != 'test'
+      path = File.expand_path("../mazes/#{filename}", __dir__)
+      @grid = CSV.read(path)
     end
 
-    def load_maze(filename)
-        CSV.read(filename)
+    @fow_flag = false
+    @fow_grid = Array.new(@grid.length) do |y|
+      Array.new(@grid[y].length, false)
     end
+    # initiliazing important coordinates
+    # start and exit located on top left and bottom right corner within the walls
+    @player_x = 1
+    @player_y = 1
+    @exit_x = @grid[0].length - 2
+    @exit_y = @grid.length - 2
+  end
 
-    def move(action)
-        case action
-        when "w"
-            if (valid_move?(@player_x, @player_y - 1))
-                @player_y -= 1
-            #else
-                #puts "Invalid move!"
-            end
-        when "a"
-            if (valid_move?(@player_x - 1, @player_y))
-                @player_x -= 1
-            #else
-                #puts "Invalid move!"
-            end
-        when "s"
-            if (valid_move?(@player_x, @player_y + 1))
-                @player_y += 1
-            #else
-                #puts "Invalid move!"
-            end
-        when "d"
-            if (valid_move?(@player_x + 1, @player_y))
-                @player_x += 1
-            #else
-                #puts "Invalid move!"
-            end
-        end
-        # reveal fow when player moves
-        reveal_fow if @fow_flag
-        # for items, add function call here to check new grid
+  # Setter for fog of war flag and initial reveal
+  def fow_flag=(flag)
+    case flag
+    when 'y'
+      @fow_flag = true
+      reveal_fow
+    when 'n'
+      @fow_flag = false
     end
+  end
 
-    # for quick look at whats in the current location
-    def tile_at(x, y)
-        @grid[y][x]
+  def load_maze(filename)
+    CSV.read(filename)
+  end
+
+  def move(action)
+    case action
+    when 'w'
+      if valid_move?(@player_x, @player_y - 1)
+        @player_y -= 1
+        # else
+        # puts "Invalid move!"
+      end
+    when 'a'
+      if valid_move?(@player_x - 1, @player_y)
+        @player_x -= 1
+        # else
+        # puts "Invalid move!"
+      end
+    when 's'
+      if valid_move?(@player_x, @player_y + 1)
+        @player_y += 1
+        # else
+        # puts "Invalid move!"
+      end
+    when 'd'
+      if valid_move?(@player_x + 1, @player_y)
+        @player_x += 1
+        # else
+        # puts "Invalid move!"
+      end
     end
+    # reveal fow when player moves
+    reveal_fow if @fow_flag
+    # for items, add function call here to check new grid
+  end
 
-    # for checking is the next tile valid, only check if the spot is a wall or not, in case of items in the future
-    def valid_move?(x,y)
-        @grid[y][x] != WALL
+  # for quick look at whats in the current location
+  def tile_at(x_coord, y_coord)
+    @grid[y_coord][x_coord]
+  end
+
+  # for checking is the next tile valid, only check if the spot is a wall or not, in case of items in the future
+  def valid_move?(x_coord, y_coord)
+    @grid[y_coord][x_coord] != WALL
+  end
+
+  # for checking if player is at the exit
+  def player_at_exit?
+    (@player_x == @exit_x) && (@player_y == @exit_y)
+  end
+
+  # for checking if a coordinate is within the bounds of the maze
+  def within_bounds?(x_coord, y_coord)
+    x_coord >= 0 && x_coord < @grid[0].length && y_coord >= 0 && y_coord < @grid.length
+  end
+
+  # for removing fog of war
+  def reveal_fow
+    (-1..1).each do |dx|
+      (-1..1).each do |dy|
+        x = @player_x + dx
+        y = @player_y + dy
+        @fow_grid[y][x] = true if within_bounds?(x, y)
+      end
     end
+  end
 
-    # for checking if player is at the exit
-    def player_at_exit?
-        (@player_x == @exit_x) && (@player_y == @exit_y)
+  # for future randomized maze:
+  # def generate_maze(sizex, sizey, startx, starty, endx, endy)
+
+  def clear_display
+    if Gem.win_platform?
+      system('cls')
+    else
+      system('clear')
     end
-    
-    # for checking if a coordinate is within the bounds of the maze
-    def within_bounds?(x, y)
-        x >= 0 && x < @grid[0].length && y >= 0 && y < @grid.length
+  end
+
+  # Old version of display function. Useful for debugging
+  # Commented due to glitchy display.
+  # def display(seconds)
+  # clear terminal and reset cursor
+  # print "\e[2J\e[H"
+  #    clear_display
+  #    @grid.each_with_index do |row, y|
+  #        row.each_with_index do |tile, x|
+  #            if x == @player_x && y == @player_y
+  #                print PLAYER
+  #            else
+  #                print tile
+  #            end
+  #        end
+  #        #start new line
+  #        puts
+  #    end
+  #    puts "Time remaining: #{seconds}"
+  #    #print "\rTime Remaining: #{@time}"
+  # end
+
+  def display(seconds)
+    # Implementation for displaying maze with time
+    # with another method
+    frame = ''
+    @grid.each_with_index do |row, y|
+      row.each_with_index do |tile, x|
+        frame += if x == @player_x && y == @player_y
+                   PLAYER
+                 elsif @fow_flag && !@fow_grid[y][x]
+                   FOW
+                 else
+                   tile
+                 end
+      end
+      frame += "\r\n"
     end
+    frame += "Time remaining: #{seconds} \n\r"
+    print "\e[H"
+    print frame
+  end
 
-    # for removing fog of war
-    def reveal_fow
-        (-1..1).each do |dx|
-            (-1..1).each do |dy|
-                x = @player_x + dx
-                y = @player_y + dy
-                if within_bounds?(x, y)
-                    @fow_grid[y][x] = true
-                end
-            end
-        end
+  def test_display
+    @grid.each do |row|
+      puts row.join
     end
+  end
+end
 
-    # for future randomized maze:
-    # def generate_maze(sizex, sizey, startx, starty, endx, endy)
-
-    def clear_display
-        if Gem.win_platform?
-            system("cls")
-        else
-            system("clear")
-        end
-    end
-
-    #def display(seconds) 
-        #clear terminal and reset cursor
-        #print "\e[2J\e[H"
-    #    clear_display
-    #    @grid.each_with_index do |row, y|
-    #        row.each_with_index do |tile, x|
-    #            if x == @player_x && y == @player_y
-    #                print PLAYER
-    #            else 
-    #                print tile
-    #            end
-    #        end
-    #        #start new line
-    #        puts 
-    #    end
-    #    puts "Time remaining: #{seconds}"
-    #    #print "\rTime Remaining: #{@time}"
-    #end
-
-    def display(seconds)
-        # Implementation for displaying maze with time
-        # with another method
-        frame = ""
-        @grid.each_with_index do |row, y|
-            row.each_with_index do |tile, x|
-                if x == @player_x && y == @player_y
-                    frame += PLAYER
-                elsif @fow_flag && !@fow_grid[y][x]
-                    frame += FOW
-                else
-                    frame += tile
-                end
-            end
-            frame += "\r\n"
-        end
-        frame += "Time remaining: #{seconds} \n\r"
-        print "\e[H"
-        print frame
-    end
-
-    def test_display
-        @grid.each do |row|
-            puts row.join
-        end
-    end
-end 
-
-#test code
-#test_maze = Maze.new("hard")
-#test_maze.test_display
-#testing valid move, expects false true true 
-#puts test_maze.valid_move?(0,0) 
-#puts test_maze.valid_move?(1,1)
-#puts test_maze.valid_move?(1,2)
+# test code
+# test_maze = Maze.new("hard")
+# test_maze.test_display
+# testing valid move, expects false true true
+# puts test_maze.valid_move?(0,0)
+# puts test_maze.valid_move?(1,1)
+# puts test_maze.valid_move?(1,2)
 # expects false
-#puts test_maze.player_at_exit?
+# puts test_maze.player_at_exit?
